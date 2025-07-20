@@ -22,7 +22,6 @@ idVendor=0x0048b,idProduct=0x0011a
 These varibles are hexidecimal code that is output form the device to tell the computer what it is. Here i have the code for the controller an dlater i'll show the code for the 
 flight stick but if your doing this with another product you'll have to find the vendor/product ID's on your own [Check out this guide (https://www.geeksforgeeks.org/linux-unix/lsusb-command-in-linux-with-examples/)]
 
-## Key Bindings
 I went ahead and mapped the key bidnings as well so i dont forget them. It's a simple system, you can figure out each binding with some easy math but i just made each button a varible with the code attached to it.
 When i press the "A" key i get this output
 
@@ -41,4 +40,35 @@ Y = [0, 8, 0]
 left
 ```
 
+This is the code for how i translated the hex coming from the controller into a usable format. Right now the code is still a work in progress but im putting together a CLI tool to control the whople process.
 
+```
+
+
+```
+
+# Flight Stick
+The flgiht stick was the same but i had a lot more trouble deducing how the hex worked since the flight stick has a multi-axis stick so theres
+a lot more values to go through.
+
+//photo of flight stick
+
+```
+//flight stick mapping
+
+```
+and heres the current code for what it can do
+
+```
+
+```
+
+
+
+
+
+# TODO
+- Build CLI Tool to be able to map bindings
+- make it a daemon so it works in the background
+- be able to switch from controller to flight stick with a single binding and use them at the same time
+  
