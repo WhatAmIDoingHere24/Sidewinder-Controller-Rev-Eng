@@ -13,8 +13,9 @@ from and getting that data.
 //code
 
 
-'''python
+```python
 idVendor=0x0048b,idProduct=0x0011a 
-''' 
+``` 
+
 These varibles are hexidecimal code that is output form the device to tell the computer what it is. Here i have the code for the controller an dlater i'll show the code for the 
 flight stick but if your doing this with another product you'll have to find the vendor/product ID's on your own [Check out this guide (https://www.geeksforgeeks.org/linux-unix/lsusb-command-in-linux-with-examples/)], 
