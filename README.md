@@ -16,23 +16,23 @@ import time
 import subprocess
 import math
 
-dev=usb.core.find(idVendor=0x045e,idProduct=0x0027) //looks for the device that has that product and vendor ID
+dev=usb.core.find(idVendor=0x045e,idProduct=0x0027) #looks for the device that has that product and vendor ID
 
-ep=dev[0].interface()[0].endpoint()[0] //access the USB device list
+ep=dev[0].interface()[0].endpoint()[0] #access the USB device list
 
-i=dev[0].interfaces()[0].bInterfaceNumber //the interface that has the speciffied device
+i=dev[0].interfaces()[0].bInterfaceNumber #the interface that has the speciffied device
 
 dev.reset() //reset the device
 
 if dev.is_kernel_driver_active(i):
-  dev.detach_kernel_driver(i) //if the device is connected remove it from giving inputs to the computer and locking up
+  dev.detach_kernel_driver(i) #if the device is connected remove it from giving inputs to the computer and locking up
 
 print("device connected\n")
 
-dev.set_configuration() //configure device to output data
-eaddr=ep.bEndpointAddress //the endpoint address of the device
+dev.set_configuration() #configure device to output data
+eaddr=ep.bEndpointAddress #the endpoint address of the device
 
-userInput=dev.read(eaddr,2048,200) //read the data, This only reads it once so i keep it in a while loop to always read data
+userInput=dev.read(eaddr,2048,200) #read the data, This only reads it once so i keep it in a while loop to always read data
 ```
 Below is the input mapping for the controller
 
