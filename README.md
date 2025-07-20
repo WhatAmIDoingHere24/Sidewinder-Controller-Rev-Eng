@@ -11,6 +11,46 @@ I wrote this project in python, theres only one library you need, coreUSB will r
 from and getting that data.
 
 ```python
+import usb.core
+import time
+import subprocess
+import math
+
+dev=usb.core.find(idVendor=0x045e,idProduct=0x0027) //looks for the device that has that product and vendor ID
+
+ep=dev[0].interface()[0].endpoint()[0] //access the USB device list
+
+i=dev[0].interfaces()[0].bInterfaceNumber //the interface that has the speciffied device
+
+dev.reset() //reset the device
+
+if dev.is_kernel_driver_active(i):
+  dev.detach_kernel_driver(i) //if the device is connected remove it from giving inputs to the computer and locking up
+
+print("device connected\n")
+
+dev.set_configuration() //configure device to output data
+eaddr=ep.bEndpointAddress //the endpoint address of the device
+
+userInput=dev.read(eaddr,2048,200) //read the data, This only reads it once so i keep it in a while loop to always read data
+```
+Below is the input mapping for the controller
+
+```
+nothing = [63, 0, 63]
+
+joystickUp = [63, 0, 0]
+joystickDown = [63, 127, 0]
+joystickLeft = [0, 63, 0]
+joystickRight = [127, 0, 0]
+
+A = [63, 63, 1]
+B = [63, 63, 4]
+X = [63, 63, 8]
+Y = [63, 63, 2]
+
+triggerLeft = [63, 63, 16]
+triggerRight = [63, 63, 32]
 
 ```
 
