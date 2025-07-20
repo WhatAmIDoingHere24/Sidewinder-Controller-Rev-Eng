@@ -66,10 +66,10 @@ I went ahead and mapped the key bidnings as well so i dont forget them. It's a s
 When i press the "A" key i get this output
 
 ```
-
+array["B", 63, 63, 1]
 ```
 
-This is becuase the device outputs user inputs in an array of integers from 0 -> 255, So when i hit a button its not a single number but a Uniqie Identifier of three numbers. 
+This is becuase the device outputs user inputs in an array of integers from 0 -> 255, So when i hit a button its not a single number but a Uniqie Identifier of three numbers. We can disregard the "B" it dosnt do anything 
 
 ```
 
@@ -97,7 +97,74 @@ for x in range(10):
   inputRecord.append("A") //pad the input record with false data
   inputRecord.append("000")
 
+while True:
+    
+    startTime = time.time()
 
+    userInput=dev.read(eaddr,2048,3000)
+
+
+    if userInput[2] == 1:
+        #print("A")
+        inputRecord.append("A")
+        inputRecord.append(startTime)
+
+    if userInput[2] == 2:
+        #print("B")
+        inputRecord.append("B")
+        inputRecord.append(startTime)
+
+
+    if userInput[2] == 4:
+        #print("X")
+        inputRecord.append("X")
+        inputRecord.append(startTime)
+        
+
+    if userInput[2] == 8:
+        #print("Y")
+        inputRecord.append("Y")
+        inputRecord.append(startTime)
+        
+
+    if userInput[2] == 16:
+        #print("triggerLeft")
+        inputRecord.append("triggerLeft")
+        inputRecord.append(startTime)
+
+
+    if userInput[2] == 32:
+        #print("triggerRight")
+        inputRecord.append("triggerRight")
+        inputRecord.append(startTime)
+        
+
+    if userInput[0] == 63 and userInput[1] == 0 and userInput[2] == 0:
+        #print("joystickUp")
+        inputRecord.append("joystickUp")
+        inputRecord.append(startTime)
+        
+
+    if userInput[0] == 63 and userInput[1] == 127 and userInput[2] == 0:
+        #print("joystickDown")
+        inputRecord.append("joystickDown")
+        inputRecord.append(startTime)
+        
+
+    if userInput[0] == 0 and userInput[1] == 63 and userInput[2] == 0:
+        #print("joystickLeft")
+        inputRecord.append("joystickLeft")
+        inputRecord.append(startTime)
+    
+
+    if userInput[0] == 127 and userInput[1] == 0 and userInput[2] == 0:
+        #print("joystickRight")
+        inputRecord.append("joystickRight")
+        inputRecord.append(startTime)
+
+
+    #if userInput[0] == 63 and userInput[1] == 63 and userInput[2] == 0:
+        #print("no input")
 
 ```
 
