@@ -56,7 +56,7 @@ triggerRight = [63, 63, 32]
 
 
 ```python
-idVendor=0x0048b,idProduct=0x0011a 
+idVendor=0x045e,idProduct=0x0027 
 ``` 
 
 These varibles are hexidecimal code that is output form the device to tell the computer what it is. Here i have the code for the controller an dlater i'll show the code for the 
@@ -72,17 +72,31 @@ When i press the "A" key i get this output
 This is becuase the device outputs user inputs in an array of integers from 0 -> 255, So when i hit a button its not a single number but a Uniqie Identifier of three numbers. 
 
 ```
+
 A = [0, 1, 0]
 B = [0, 2, 0]
 X = [0, 4, 0]
 Y = [0, 8, 0]
 
-left
+joystickLeft = [0, 63, 0]
+joystickRight = [127, 0, 0]
+joystickUp = [63, 0, 0]
+joystickDown = [63, 127, 0]
+
+triggerLeft = [63, 63, 16]
+triggerRight = [63, 63, 32]
+
 ```
 
 This is the code for how i translated the hex coming from the controller into a usable format. Right now the code is still a work in progress but im putting together a CLI tool to control the whople process.
 
 ```
+inputRecord = [] //a score of all inputs form the user for a session
+
+for x in range(10):
+  inputRecord.append("A") //pad the input record with false data
+  inputRecord.append("000")
+
 
 
 ```
